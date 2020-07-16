@@ -135,14 +135,15 @@ float calculateLocalJ(int i,mesh m){
     return determinant(matrix);
 }
 
+//matriz A
 void calcularT(int i, mesh m,Matrix t){
 	float t1,t2,t3,t4;
 	element e = m.getElement(i);
 	
-	t1=calcularTenedor(e,YE,2,1,m)+calcularTenedor(e,YE,3,1,m)+calcularTenedor(e,YE,4,1,m);
-	t2=(2*calcularTenedor(e,YE,2,1,m))+calcularTenedor(e,YE,3,1,m)+calcularTenedor(e,YE,4,1,m);
-	t3=calcularTenedor(e,YE,2,1,m)+(2*calcularTenedor(e,YE,3,1,m))+calcularTenedor(e,YE,4,1,m);
-	t4=calcularTenedor(e,YE,2,1,m)+calcularTenedor(e,YE,3,1,m)+(2*calcularTenedor(e,YE,4,1,m));
+	t1=calcularTenedor(e,EQUIS,2,1,m)+(2*calcularTenedor(e,EQUIS,3,1,m))+calcularTenedor(e,EQUIS,4,1,m)+calcularTenedor(e,EQUIS,4,1,m);
+	t2=(2*calcularTenedor(e,EQUIS,2,1,m))+calcularTenedor(e,EQUIS,3,1,m)+calcularTenedor(e,EQUIS,4,1,m)+calcularTenedor(e,EQUIS,4,1,m);
+	t3=calcularTenedor(e,EQUIS,2,1,m)+calcularTenedor(e,EQUIS,3,1,m)+(2*calcularTenedor(e,EQUIS,4,1,m))+calcularTenedor(e,EQUIS,4,1,m);
+	t4=calcularTenedor(e,EQUIS,2,1,m)+calcularTenedor(e,EQUIS,3,1,m)+calcularTenedor(e,EQUIS,4,1,m)+(2*calcularTenedor(e,EQUIS,4,1,m));
 	
 	t.at(0).at(0)=t1;
 	t.at(1).at(0)=t2;
@@ -185,6 +186,7 @@ void calcularT(int i, mesh m,Matrix t){
 	
 }
 
+//matriz G
 void calcularT2(int i, mesh m,Matrix t){
 	float t1,t2,t3,t4;
 	
@@ -193,25 +195,10 @@ void calcularT2(int i, mesh m,Matrix t){
 	node n1= selectNode(1,e,m);
 	
 		
-	t1=(calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,EQUIS,2,1,m)+
-	calcularTenedor(e,EQUIS,3,1,m)+calcularTenedor(e,EQUIS,4,1,m)+
-	(5*selectCoord(EQUIS,n1))-calcularTenedor(e,YE,2,1,m)+calcularTenedor(e,YE,3,1,m)+
-	(5*selectCoord(EQUIS,n1)));
-	
-	t2=(calcularTenedor(e,YE,4,1,m)+(2*calcularTenedor(e,EQUIS,2,1,m))+
-	calcularTenedor(e,EQUIS,3,1,m)+calcularTenedor(e,EQUIS,4,1,m)+
-	(5*selectCoord(EQUIS,n1))-(2*calcularTenedor(e,YE,2,1,m))+calcularTenedor(e,YE,3,1,m)+
-	(5*selectCoord(EQUIS,n1)));
-	
-	t3=(calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,EQUIS,2,1,m)+
-	(2*calcularTenedor(e,EQUIS,3,1,m))+calcularTenedor(e,EQUIS,4,1,m)+
-	(5*selectCoord(EQUIS,n1))-calcularTenedor(e,YE,2,1,m)+(2*calcularTenedor(e,YE,3,1,m))+
-	(5*selectCoord(EQUIS,n1)));
-	
-	t4=((2*calcularTenedor(e,YE,4,1,m))+calcularTenedor(e,EQUIS,2,1,m)+
-	calcularTenedor(e,EQUIS,3,1,m),(2*calcularTenedor(e,EQUIS,4,1,m))+
-	(5*selectCoord(EQUIS,n1))-calcularTenedor(e,YE,2,1,m)+calcularTenedor(e,YE,3,1,m)+
-	(5*selectCoord(EQUIS,n1)));	
+	t1=calcularTenedor(e,YE,2,1,m)+(2*calcularTenedor(e,YE,3,1,m))+calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,YE,4,1,m);
+	t2=(2*calcularTenedor(e,YE,2,1,m))+calcularTenedor(e,YE,3,1,m)+calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,YE,4,1,m);
+	t3=calcularTenedor(e,YE,2,1,m)+calcularTenedor(e,YE,3,1,m)+(2*calcularTenedor(e,YE,4,1,m))+calcularTenedor(e,YE,4,1,m);
+	t4=calcularTenedor(e,YE,2,1,m)+calcularTenedor(e,YE,3,1,m)+calcularTenedor(e,YE,4,1,m)+(2*calcularTenedor(e,YE,4,1,m));	
 	
 	
 	t.at(0).at(0)=t1;
@@ -255,6 +242,7 @@ void calcularT2(int i, mesh m,Matrix t){
 		
 }
 
+//matriz K
 float calcularKTermino(int i, mesh m){
 	float k;
 	node n1;
@@ -350,7 +338,7 @@ void calculateF(Vector &f, mesh &m){
 
 Vector createLocalb(int e,mesh &m){
     float J;
-    Vector b,b_aux,f,z;
+    Vector b,b_aux,f;
     Matrix g_matrix;
 
     calculateF(f, m);
@@ -375,7 +363,7 @@ Vector createLocalb(int e,mesh &m){
     b_aux.at(14) =(float) val;
     b_aux.at(15) =(float) val;
 
-    productRealVector(J/24,b_aux,b);
+    productRealVector(J/120,b_aux,b);
     
     cout << b.size();
     cout << endl<<val;
