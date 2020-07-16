@@ -135,8 +135,143 @@ float calculateLocalJ(int i,mesh m){
     return determinant(matrix);
 }
 
+void calcularT(int i, mesh m,Matrix t){
+	float t1,t2,t3,t4;
+	element e = m.getElement(i);
+	
+	t1=calcularTenedor(e,YE,2,1,m)+calcularTenedor(e,YE,3,1,m)+calcularTenedor(e,YE,4,1,m);
+	t2=(2*calcularTenedor(e,YE,2,1,m))+calcularTenedor(e,YE,3,1,m)+calcularTenedor(e,YE,4,1,m);
+	t3=calcularTenedor(e,YE,2,1,m)+(2*calcularTenedor(e,YE,3,1,m))+calcularTenedor(e,YE,4,1,m);
+	t4=calcularTenedor(e,YE,2,1,m)+calcularTenedor(e,YE,3,1,m)+(2*calcularTenedor(e,YE,4,1,m));
+	
+	t.at(0).at(0)=t1;
+	t.at(1).at(0)=t2;
+	t.at(2).at(0)=t3;
+	t.at(3).at(0)=t4;
+	t.at(4).at(0)=0;
+	t.at(5).at(0)=0;
+	t.at(6).at(0)=0;
+	t.at(7).at(0)=0;
+	t.at(8).at(0)=0;
+	t.at(9).at(0)=0;
+	t.at(10).at(0)=0;
+	t.at(11).at(0)=0;
+	
+	t.at(0).at(1)=0;
+	t.at(1).at(1)=0;
+	t.at(2).at(1)=0;
+	t.at(3).at(1)=0;
+	t.at(4).at(1)=t1;
+	t.at(5).at(1)=t2;
+	t.at(6).at(1)=t3;
+	t.at(7).at(1)=t4;
+	t.at(8).at(1)=0;
+	t.at(9).at(1)=0;
+	t.at(10).at(1)=0;
+	t.at(11).at(1)=0;
+	
+	t.at(0).at(2)=0;
+	t.at(1).at(2)=0;
+	t.at(2).at(2)=0;
+	t.at(3).at(2)=0;
+	t.at(4).at(2)=0;
+	t.at(5).at(2)=0;
+	t.at(6).at(2)=0;
+	t.at(7).at(2)=0;
+	t.at(8).at(2)=t1;
+	t.at(9).at(2)=t2;
+	t.at(10).at(2)=t3;
+	t.at(11).at(2)=t4;	
+	
+}
+
+void calcularT2(int i, mesh m,Matrix t){
+	float t1,t2,t3,t4;
+	
+	element e = m.getElement(i);
+	
+	node n1= selectNode(1,e,m);
+	
+		
+	t1=(calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,EQUIS,2,1,m)+
+	calcularTenedor(e,EQUIS,3,1,m)+calcularTenedor(e,EQUIS,4,1,m)+
+	(5*selectCoord(EQUIS,n1))-calcularTenedor(e,YE,2,1,m)+calcularTenedor(e,YE,3,1,m)+
+	(5*selectCoord(EQUIS,n1)));
+	
+	t2=(calcularTenedor(e,YE,4,1,m)+(2*calcularTenedor(e,EQUIS,2,1,m))+
+	calcularTenedor(e,EQUIS,3,1,m)+calcularTenedor(e,EQUIS,4,1,m)+
+	(5*selectCoord(EQUIS,n1))-(2*calcularTenedor(e,YE,2,1,m))+calcularTenedor(e,YE,3,1,m)+
+	(5*selectCoord(EQUIS,n1)));
+	
+	t3=(calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,EQUIS,2,1,m)+
+	(2*calcularTenedor(e,EQUIS,3,1,m))+calcularTenedor(e,EQUIS,4,1,m)+
+	(5*selectCoord(EQUIS,n1))-calcularTenedor(e,YE,2,1,m)+(2*calcularTenedor(e,YE,3,1,m))+
+	(5*selectCoord(EQUIS,n1)));
+	
+	t4=((2*calcularTenedor(e,YE,4,1,m))+calcularTenedor(e,EQUIS,2,1,m)+
+	calcularTenedor(e,EQUIS,3,1,m),(2*calcularTenedor(e,EQUIS,4,1,m))+
+	(5*selectCoord(EQUIS,n1))-calcularTenedor(e,YE,2,1,m)+calcularTenedor(e,YE,3,1,m)+
+	(5*selectCoord(EQUIS,n1)));	
+	
+	
+	t.at(0).at(0)=t1;
+	t.at(1).at(0)=t2;
+	t.at(2).at(0)=t3;
+	t.at(3).at(0)=t4;
+	t.at(4).at(0)=0;
+	t.at(5).at(0)=0;
+	t.at(6).at(0)=0;
+	t.at(7).at(0)=0;
+	t.at(8).at(0)=0;
+	t.at(9).at(0)=0;
+	t.at(10).at(0)=0;
+	t.at(11).at(0)=0;
+	
+	t.at(0).at(1)=0;
+	t.at(1).at(1)=0;
+	t.at(2).at(1)=0;
+	t.at(3).at(1)=0;
+	t.at(4).at(1)=t1;
+	t.at(5).at(1)=t2;
+	t.at(6).at(1)=t3;
+	t.at(7).at(1)=t4;
+	t.at(8).at(1)=0;
+	t.at(9).at(1)=0;
+	t.at(10).at(1)=0;
+	t.at(11).at(1)=0;
+	
+	t.at(0).at(2)=0;
+	t.at(1).at(2)=0;
+	t.at(2).at(2)=0;
+	t.at(3).at(2)=0;
+	t.at(4).at(2)=0;
+	t.at(5).at(2)=0;
+	t.at(6).at(2)=0;
+	t.at(7).at(2)=0;
+	t.at(8).at(2)=t1;
+	t.at(9).at(2)=t2;
+	t.at(10).at(2)=t3;
+	t.at(11).at(2)=t4;
+		
+}
+
+float calcularKTermino(int i, mesh m){
+	float k;
+	node n1;
+	element e = m.getElement(i);
+	
+	n1= selectNode(1,e,m);
+	
+	k=calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,EQUIS,2,1,m),calcularTenedor(e,EQUIS,3,1,m)+
+	calcularTenedor(e,EQUIS,4,1,m)+(4*selectCoord(EQUIS,n1))+calcularTenedor(e,YE,2,1,m)+
+	calcularTenedor(e,YE,3,1,m)+(4*selectCoord(YE,n1));
+	
+	return k;
+
+}
+
 Matrix createLocalM(int e,mesh &m){
-    Matrix matrixA,matrixK,matrixG,matrixD;
+    Matrix matrixA,matrixK,matrixG,matrixD,matrixT,matrixT2;
     float u_bar,nu,rho,Ve,J,Determinant;
     
     /* [ A+K  G ]
@@ -145,31 +280,32 @@ Matrix createLocalM(int e,mesh &m){
 
     //Matrix A
     Matrix g_matrix, Alpha, Beta;
-
-    u_bar = m.getParameter(ADJECTIVE_VELOCITY);
+	zeroes(matrixT,12,3);
+	zeroes(matrixT2,12,3);
     Determinant = calculateLocalD(e,m);
     J = calculateLocalJ(e,m);
+    calcularT(e,m,matrixT);
+
+    calcularT2(e,m,matrixT2);
 
     if(Determinant == 0){
         cout << "\n!---CATASTROPHIC FAILURE---!\n";
         exit(EXIT_FAILURE);
     }
     
-    float real_a = (float) (u_bar*J)/(24*Determinant);
+    float real_a = (float) (J)/(120*Determinant);
     
     calculateGamma(g_matrix);
     calculateAlpha(e,Alpha,m);
     calculateBeta(Beta);
-    productRealMatrix(real_a, productMatrixMatrix(g_matrix,productMatrixMatrix(Alpha,Beta,3,3,12),12,3,12),matrixA);
+    productRealMatrix(real_a, productMatrixMatrix(matrixT,productMatrixMatrix(Alpha,Beta,3,3,12),12,3,12),matrixA);
 
 
     //Matrix K
     Matrix Alpha_t,Beta_t;
 
-    nu = m.getParameter(DYNAMIC_VISCOSITY);
-    Ve = calculateLocalVolume(e,m);
     
-    float real_k = (float) (nu*Ve)/(Determinant*Determinant);
+    float real_k = (float) (calcularKTermino(e,m)*J)/(120*Determinant);
 
     transpose(Alpha,Alpha_t);
     transpose(Beta,Beta_t);
@@ -180,15 +316,14 @@ Matrix createLocalM(int e,mesh &m){
     //Matrix G
     Matrix Omega;
     
-    rho = m.getParameter(DENSITY);
-    float real_g = (float) (J/(24*rho*Determinant));
+    float real_g = (float) (J/(120*Determinant));
 
     calculateOmega(Omega);
-    productRealMatrix(real_g,productMatrixMatrix(g_matrix,productMatrixMatrix(Alpha,Omega,3,3,4),12,3,4),matrixG);
+    productRealMatrix(real_g,productMatrixMatrix(matrixT2,productMatrixMatrix(Alpha,Omega,3,3,4),12,3,4),matrixG);
 
     //Matrix D
     Matrix g_matrix_t,Omega_t;
-    float real_d = (float)(J/(24*Determinant));
+    float real_d = (float)(J/(120*Determinant));
 
     transpose(Omega, Omega_t);
     transpose(g_matrix,g_matrix_t);
@@ -215,7 +350,7 @@ void calculateF(Vector &f, mesh &m){
 
 Vector createLocalb(int e,mesh &m){
     float J;
-    Vector b,b_aux,f;
+    Vector b,b_aux,f,z;
     Matrix g_matrix;
 
     calculateF(f, m);
@@ -230,8 +365,20 @@ Vector createLocalb(int e,mesh &m){
     }
     
     zeroes(b_aux,16);
+
     productMatrixVector(g_matrix,f,b_aux);
+
+    float val = m.getParameter(HX) + m.getParameter(HY) + m.getParameter(HZ);
+
+    b_aux.at(12) = (float) val;
+    b_aux.at(13) = (float) val;
+    b_aux.at(14) =(float) val;
+    b_aux.at(15) =(float) val;
+
     productRealVector(J/24,b_aux,b);
     
+    cout << b.size();
+    cout << endl<<val;
+
     return b;
 }
