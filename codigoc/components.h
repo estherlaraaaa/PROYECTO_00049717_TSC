@@ -353,20 +353,8 @@ Vector createLocalb(int e,mesh &m){
     }
     
     zeroes(b_aux,16);
-
     productMatrixVector(g_matrix,f,b_aux);
-
-    float val = m.getParameter(HX) + m.getParameter(HY) + m.getParameter(HZ);
-
-    b_aux.at(12) = (float) val;
-    b_aux.at(13) = (float) val;
-    b_aux.at(14) =(float) val;
-    b_aux.at(15) =(float) val;
-
     productRealVector(J/120,b_aux,b);
     
-    cout << b.size();
-    cout << endl<<val;
-
     return b;
 }

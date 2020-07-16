@@ -11,8 +11,8 @@
 int main(int argc, char *argv[])
 {
     char filename[150];
-    //strcpy(filename,argv[1]);
-    cin >> filename;
+    strcpy(filename,argv[1]);
+    //cin >> filename;
 
     vector<Matrix> localKs;
     vector<Vector> localbs;
