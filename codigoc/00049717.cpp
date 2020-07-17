@@ -27,22 +27,27 @@ int main(int argc, char *argv[])
 
     mesh m;
     leerMallaYCondiciones(m,filename);
+    cout << "Datos obtenidos correctamente\n********************\n";
     
     crearSistemasLocales(m,localKs,localbs);
+    showKs(localKs); showbs(localbs);
+    cout << "******************************\n";
     
     zeroes(K,4*m.getSize(NODES));
     zeroes(b,4*m.getSize(NODES));
     ensamblaje(m,localKs,localbs,K,b);
+    showMatrix(K); showVector(b);
+    cout << "******************************\n";
     
     applyDirichlet(m,K,b);
     
     cout << "K Global: " << endl;
     showMatrix(K);
-    cout << endl;
+    cout << "******************************\n";
 
     cout << "b Global: " << endl;
     showVector(b);
-    cout << endl;
+    cout << "******************************\n";
 
     zeroes(T,b.size());
     calculate(K,b,T);

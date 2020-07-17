@@ -250,9 +250,14 @@ float calcularKTermino(int i, mesh m){
 	
 	n1= selectNode(1,e,m);
 	
-	k=calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,EQUIS,2,1,m),calcularTenedor(e,EQUIS,3,1,m)+
-	calcularTenedor(e,EQUIS,4,1,m)+(4*selectCoord(EQUIS,n1))+calcularTenedor(e,YE,2,1,m)+
-	calcularTenedor(e,YE,3,1,m)+(4*selectCoord(YE,n1));
+	k=pow(calcularTenedor(e,EQUIS,4,1,m),3)+ pow(calcularTenedor(e,EQUIS,4,1,m),2)*(calcularTenedor(e,EQUIS,4,1,m)+
+    calcularTenedor(e,EQUIS,4,1,m)+calcularTenedor(e,EQUIS,4,1,m)) +pow(calcularTenedor(e,EQUIS,4,1,m),2)*(pow(calcularTenedor(e,EQUIS,4,1,m),2)+
+    calcularTenedor(e,EQUIS,4,1,m)*(calcularTenedor(e,EQUIS,4,1,m)+calcularTenedor(e,EQUIS,4,1,m))+pow(calcularTenedor(e,EQUIS,4,1,m),2)+
+    (calcularTenedor(e,EQUIS,4,1,m)*calcularTenedor(e,EQUIS,4,1,m))+pow(calcularTenedor(e,EQUIS,4,1,m),2))+pow(calcularTenedor(e,EQUIS,4,1,m),3)+
+    pow(calcularTenedor(e,EQUIS,4,1,m),2)*(calcularTenedor(e,EQUIS,4,1,m)+calcularTenedor(e,EQUIS,4,1,m))+
+    calcularTenedor(e,EQUIS,4,1,m)*(pow(calcularTenedor(e,EQUIS,4,1,m),2)+calcularTenedor(e,EQUIS,4,1,m)+calcularTenedor(e,EQUIS,4,1,m)+pow(calcularTenedor(e,EQUIS,4,1,m),2))+
+    pow(calcularTenedor(e,EQUIS,4,1,m),3)+pow(calcularTenedor(e,EQUIS,4,1,m),2)+calcularTenedor(e,EQUIS,4,1,m)+calcularTenedor(e,EQUIS,4,1,m)+
+    pow(calcularTenedor(e,EQUIS,4,1,m),2)+pow(calcularTenedor(e,EQUIS,4,1,m),3)+(5*(calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,YE,4,1,m)))
 	
 	return k;
 
