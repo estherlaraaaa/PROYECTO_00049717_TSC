@@ -257,7 +257,7 @@ float calcularKTermino(int i, mesh m){
     pow(calcularTenedor(e,EQUIS,4,1,m),2)*(calcularTenedor(e,EQUIS,4,1,m)+calcularTenedor(e,EQUIS,4,1,m))+
     calcularTenedor(e,EQUIS,4,1,m)*(pow(calcularTenedor(e,EQUIS,4,1,m),2)+calcularTenedor(e,EQUIS,4,1,m)+calcularTenedor(e,EQUIS,4,1,m)+pow(calcularTenedor(e,EQUIS,4,1,m),2))+
     pow(calcularTenedor(e,EQUIS,4,1,m),3)+pow(calcularTenedor(e,EQUIS,4,1,m),2)+calcularTenedor(e,EQUIS,4,1,m)+calcularTenedor(e,EQUIS,4,1,m)+
-    pow(calcularTenedor(e,EQUIS,4,1,m),2)+pow(calcularTenedor(e,EQUIS,4,1,m),3)+(5*(calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,YE,4,1,m)))
+    pow(calcularTenedor(e,EQUIS,4,1,m),2)+pow(calcularTenedor(e,EQUIS,4,1,m),3)+(5*(calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,YE,4,1,m)+calcularTenedor(e,YE,4,1,m)));
 	
 	return k;
 

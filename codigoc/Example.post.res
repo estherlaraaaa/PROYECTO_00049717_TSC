@@ -4,8 +4,8 @@ ComponentNames "u" "v" "w"
 Values
 1 4 2
 2 4 2
-3 6 2
-4 5.66667 2
+3 4.09091 2
+4 4.07576 2
 5 4 2
 End values
 
